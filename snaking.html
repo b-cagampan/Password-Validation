@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color:rgb(199, 200, 200);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            width: 300px;
+            height: 120px;
+            background-color: rgb(239, 237, 234);
+            border-radius: 20px 20px;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            padding: 10px;
+        }
+        p {
+            border-radius: 20px;
+            width: 100px;
+            color: white;
+        }
+
+        #mod {
+            display: none;
+        }
+
+        #weak {
+            display: none;
+        }
+
+        #strng {
+            display: none;
+        }
+
+    </style>
+    <title>User</title>
+</head>
+<body>
+    <div class="container">
+        <h3>Password Checker</h3>
+        <form>
+            <input type="text" id="pass" name='passwordCheck' value="" required>
+        </form>
+        <div class="msg">
+            <p style="background-color:green;" id="strng">Strong</p>
+            <p style="background-color:rgb(186, 186, 34);" id="mod">Moderate</p>
+            <p style="background-color:red;" id="weak">Weak</p>
+        </div>
+    </div>
+</body>
+<script>
+    const passwrdStrng = document.getElementById("strng");
+    const passwrdMod = document.getElementById("mod");
+    const passwrdWeak = document.getElementById("weak");
+    const myInput = document.getElementById("pass");
+    const upperCase = /[A-Z]/g;
+    const lowerCase = /[a-z]/g;
+    const hasNum = /[1-9]/g;
+    const hasSymbol = /[[!,@,#,$,%,^,&,*,?,_,~]/g;
+
+    myInput.onkeyup = function() {
+        if(myInput.value.length > 7 && myInput.value.match(upperCase) && myInput.value.match(lowerCase) && myInput.value.match(hasNum) && myInput.value.match(hasSymbol)) {
+            passwrdStrng.style.display = "block";
+            passwrdMod.style.display = "none";
+            passwrdWeak.style.display = "none";
+        } else if(myInput.value.length > 4 && myInput.value.length < 7 || myInput.value.match(upperCase) && myInput.value.match(lowerCase) && myInput.value.match(hasNum) && myInput.value.match(hasSymbol)) {
+            passwrdStrng.style.display = "none";
+            passwrdMod.style.display = "block";
+            passwrdWeak.style.display = "none";
+        } else if(myInput.value.length > 0 && myInput.value.length < 4 || myInput.value.match(upperCase) || myInput.value.match(lowerCase) || myInput.value.match(hasNum) || myInput.value.match(hasSymbol)) {
+            passwrdStrng.style.display = "none";
+            passwrdMod.style.display = "none";
+            passwrdWeak.style.display = "block";
+        } else {
+            passwrdStrng.style.display = "none";
+            passwrdMod.style.display = "none";
+            passwrdWeak.style.display = "none";
+        }
+    }
+</script>
+</html>
